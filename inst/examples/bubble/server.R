@@ -1,6 +1,6 @@
 library(dplyr)
 
-shinyServer(function(input, output, session) {
+server <- function(input, output, session) {
 
   # Provide explicit colors for regions, so they don't get recoded when the
   # different series happen to be ordered differently from year to year.
@@ -36,4 +36,9 @@ shinyServer(function(input, output, session) {
       )
     )
   })
-})
+}
+
+######################################################################################################
+# -------------------------------------- shiny app call -------------------------------------------- #
+######################################################################################################
+shinyApp(ui = ui, server = server)

@@ -1,7 +1,7 @@
 # More info:
 #   https://github.com/jcheng5/googleCharts
 # Install:
-#   devtools::install_github("jcheng5/googleCharts")
+#devtools::install_github("jcheng5/googleCharts")
 library(googleCharts)
 
 # Use global max/min for axes so the view window stays
@@ -15,7 +15,7 @@ ylim <- list(
   max = max(data$Life.Expectancy) + 3
 )
 
-shinyUI(fluidPage(
+ui <- fluidPage(
   # This line loads the Google Charts JS library
   googleChartsInit(),
 
@@ -29,6 +29,7 @@ shinyUI(fluidPage(
   ),
 
   h2("Google Charts demo"),
+
 
   googleBubbleChart("chart",
     width="100%", height = "475px",
@@ -74,11 +75,15 @@ shinyUI(fluidPage(
       )
     )
   ),
+  
   fluidRow(
     shiny::column(4, offset = 4,
       sliderInput("year", "Year",
         min = min(data$Year), max = max(data$Year),
         value = min(data$Year), animate = TRUE)
     )
-  )
-))
+  ),
+  
+  p("Source: Joe Cheng's googleCharts: https://github.com/jcheng5/googleCharts"),
+  p("Using as test app for RStudio Connect platform")
+)
